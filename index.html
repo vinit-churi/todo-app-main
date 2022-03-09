@@ -4,34 +4,131 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <!-- <script src=""></script> -->
+    <link rel="stylesheet" href="./css/main.css" />
     <title>todo app</title>
   </head>
   <body>
-    <img src="./images/bg-mobile-light.jpg" alt="mountain" />
+    <!-- <img
+      id="mobile-design"
+      src="./design/mobile-design-light.jpg"
+      alt="mobile-design"
+    /> -->
+    <div class="hero-image-container">
+      <img id="hero-image" src="./images/bg-mobile-light.jpg" alt="mountain" />
+    </div>
     <main>
       <header>
-        <div class="title">TODO</div>
-        <div class="day-and-night">
-          <img src="./images/icon-sun.svg" alt="sun or moon" />
+        <div class="centering-container">
+          <div class="title">TODO</div>
+          <div class="day-and-night">
+            <img src="./images/icon-sun.svg" alt="sun or moon" />
+          </div>
         </div>
       </header>
-      <section class="todo-container">
-        <input id="input-task" type="text" />
+      <section class="todo-container centering-container">
+        <div class="input-task-container">
+          <form id="task-input">
+            <input
+              id="input-task"
+              type="text"
+              placeholder="Create a new task.."
+            />
+          </form>
+        </div>
         <div class="task-view">
-          <ul class="tasks-container">
+          <ul class="tasks-container style-5">
             <li class="single-task">
               <div class="circle">
                 <img src="./images/icon-check.svg" alt="check" />
               </div>
-              <p>this is a task</p>
-              <div class="delete"></div>
+              <div class="task-name">this is task</div>
+              <div class="delete">
+                <img src="./images/icon-cross.svg" alt="delete" />
+              </div>
+            </li>
+            <li class="single-task">
+              <div class="circle">
+                <img src="./images/icon-check.svg" alt="check" />
+              </div>
+              <div class="task-name">this is task</div>
+              <div class="delete">
+                <img src="./images/icon-cross.svg" alt="delete" />
+              </div>
+            </li>
+            <li class="single-task">
+              <div class="circle">
+                <img src="./images/icon-check.svg" alt="check" />
+              </div>
+              <div class="task-name">this is task</div>
+              <div class="delete">
+                <img src="./images/icon-cross.svg" alt="delete" />
+              </div>
+            </li>
+            <li class="single-task">
+              <div class="circle">
+                <img src="./images/icon-check.svg" alt="check" />
+              </div>
+              <div class="task-name">this is task</div>
+              <div class="delete">
+                <img src="./images/icon-cross.svg" alt="delete" />
+              </div>
+            </li>
+            <li class="single-task">
+              <div class="circle">
+                <img src="./images/icon-check.svg" alt="check" />
+              </div>
+              <div class="task-name">this is task</div>
+              <div class="delete">
+                <img src="./images/icon-cross.svg" alt="delete" />
+              </div>
+            </li>
+            <li class="single-task">
+              <div class="circle">
+                <img src="./images/icon-check.svg" alt="check" />
+              </div>
+              <div class="task-name">this is task</div>
+              <div class="delete">
+                <img src="./images/icon-cross.svg" alt="delete" />
+              </div>
+            </li>
+            <li class="single-task">
+              <div class="circle">
+                <img src="./images/icon-check.svg" alt="check" />
+              </div>
+              <div class="task-name">this is task</div>
+              <div class="delete">
+                <img src="./images/icon-cross.svg" alt="delete" />
+              </div>
+            </li>
+            <li class="single-task">
+              <div class="circle">
+                <img src="./images/icon-check.svg" alt="check" />
+              </div>
+              <div class="task-name">this is task</div>
+              <div class="delete">
+                <img src="./images/icon-cross.svg" alt="delete" />
+              </div>
+            </li>
+            <li class="single-task">
+              <div class="circle">
+                <img src="./images/icon-check.svg" alt="check" />
+              </div>
+              <div class="task-name">this is taskthis is task</div>
+              <div class="delete">
+                <img src="./images/icon-cross.svg" alt="delete" />
+              </div>
             </li>
           </ul>
           <div class="task-controls">
-            <p class="status"></p>
-            <div class="buttons">
+            <p class="status">5 items left</p>
+            <div class="pcbuttons disable">
               <p class="all">All</p>
               <p class="active">Active</p>
               <p class="completed">Completed</p>
@@ -39,8 +136,15 @@
             <div class="clear">Clear Completed</div>
           </div>
         </div>
+        <div class="mobile-buttons">
+          <p class="all">All</p>
+          <p class="active">Active</p>
+          <p class="completed">Completed</p>
+        </div>
+        <p class="info">Drag and drop to reorder tasks</p>
       </section>
-      <p class="info">Drag and drop to reorder tasks</p>
+      <!-- <footer>
+      </footer> -->
     </main>
   </body>
 </html>

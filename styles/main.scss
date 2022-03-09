@@ -1,8 +1,117 @@
-@import "reset";
-@import "root";
-@import "common";
-@import "mockup";
+@use "./_reset";
+@use "./_root";
+@use "./_common";
+@use "./_mockup";
 
 body {
-  background-color: red;
+  background-color: var(--background-color);
+  font-family: var(--font-family);
+  font-size: var(--font-weight-400);
+  font-size: 18px;
+}
+
+.hero-image-container {
+  position: relative;
+  max-height: 333px;
+  min-height: 207px;
+  #hero-image {
+    width: 100%;
+    height: 100%;
+    min-height: 207px;
+    max-height: 333px;
+    object-fit: cover;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    height: calc(100% - 6px);
+    // height: calc(100%);
+    width: 100%;
+    z-index: 20;
+    top: 0;
+    left: 0;
+    // background-color: #fc00ff;
+    // background-image: linear-gradient(90deg, #fc00ff 0%, #00dbde 100%);
+    background-color: #fc00ff;
+    background-image: linear-gradient(
+      90deg,
+      #fc00ff 0%,
+      #138de3 74%,
+      #00dbde 100%
+    );
+
+    opacity: 0.4;
+  }
+}
+
+header {
+  .centering-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    // top: 0;
+    // top: minmax(0, 300px);
+    // top: max(0, calc(3vw * 10));
+    top: clamp(1px, calc(1vw * 14.5), 100px);
+    // left: 0;
+    // right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 40;
+    .title {
+      // padding: 3rem 0 1.5rem 0;
+      //   font-size: 2rem;
+      color: var(--font-color);
+      //   color: red;
+      letter-spacing: 4px;
+      font-size: 2rem;
+      //   font-size: clamp(2rem, 2.5vw, 4rem);
+    }
+    // .day-and-night {
+    //   //   padding: 3rem 0 1.5rem 0;
+    // }
+  }
+}
+
+.todo-container {
+  z-index: 60;
+  position: absolute;
+  //   top: 120px;
+  top: clamp(60px, calc(2.5vw * 12), 150px);
+  //   left: 0;
+  //   right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  //   background-color: yellowgreen;
+
+  .input-task-container {
+    position: relative;
+    #input-task {
+      width: 100%;
+      height: 50px;
+      outline: none;
+      border: 0;
+      border-radius: 8px;
+      padding-left: 3.4rem;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      height: 1.4rem;
+      // height: calc(100%);
+      //   background-color: black;
+      width: 1.4rem;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 1.5rem;
+      border-radius: 50%;
+      border: 1px solid var(--border-color);
+      display: flex;
+    }
+  }
+
+  .task-view {
+    // background-color: yellowgreen;
+  }
 }
