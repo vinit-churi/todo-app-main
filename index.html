@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <!-- <script src=""></script> -->
+    <title>todo app</title>
+  </head>
+  <body>
+    <img src="./images/bg-mobile-light.jpg" alt="mountain" />
+    <main>
+      <header>
+        <div class="title">TODO</div>
+        <div class="day-and-night">
+          <img src="./images/icon-sun.svg" alt="sun or moon" />
+        </div>
+      </header>
+      <section class="todo-container">
+        <input id="input-task" type="text" />
+        <div class="task-view">
+          <ul class="tasks-container">
+            <li class="single-task">
+              <div class="circle">
+                <img src="./images/icon-check.svg" alt="check" />
+              </div>
+              <p>this is a task</p>
+              <div class="delete"></div>
+            </li>
+          </ul>
+          <div class="task-controls">
+            <p class="status"></p>
+            <div class="buttons">
+              <p class="all">All</p>
+              <p class="active">Active</p>
+              <p class="completed">Completed</p>
+            </div>
+            <div class="clear">Clear Completed</div>
+          </div>
+        </div>
+      </section>
+      <p class="info">Drag and drop to reorder tasks</p>
+    </main>
+  </body>
+</html>
