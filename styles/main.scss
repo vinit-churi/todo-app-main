@@ -12,13 +12,13 @@ body {
 
 .hero-image-container {
   position: relative;
-  max-height: 333px;
+  max-height: 265px;
   min-height: 207px;
   #hero-image {
     width: 100%;
     height: 100%;
     min-height: 207px;
-    max-height: 333px;
+    max-height: 265px;
     object-fit: cover;
   }
   &::after {
@@ -112,6 +112,7 @@ header {
   }
 
   .task-view {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     // background-color: yellowgreen;
   }
 }
