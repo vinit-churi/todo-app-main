@@ -95,6 +95,8 @@ header {
       border: 0;
       border-radius: 8px;
       padding-left: 3.4rem;
+      background-color: var(--background-color);
+      color: var(--font-color);
     }
     &::after {
       content: "";
@@ -113,7 +115,7 @@ header {
   }
 
   .task-view {
-    box-shadow: var(--box-shadow-one);
+    // box-shadow: var(--box-shadow-one);
     // background-color: yellowgreen;
   }
 }
