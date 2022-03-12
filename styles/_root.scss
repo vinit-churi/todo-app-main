@@ -26,8 +26,9 @@ $Very-Dark-Grayish-Blue: hsl(237, 14%, 26%);
   --font-weight-700: 700;
   --font-family: "Josefin Sans", sans-serif;
   --element-color: white;
-  --font-color: #{$Very-Light-Gray};
+  --font-color: #{$Very-Dark-Blue};
   --border-color: #{$Light-Grayish-Blue};
+  --box-shadow-one: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 /* Typography */

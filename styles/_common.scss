@@ -24,7 +24,8 @@ $Check-Background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
   flex-direction: column;
   margin-bottom: 0;
   gap: 3px;
-  .single-task {
+  .single-task,
+  .li-lable {
     list-style: none;
     text-decoration: none;
     display: flex;
@@ -37,7 +38,7 @@ $Check-Background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
     cursor: grab;
     // background-color: violet;
     // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    box-shadow: var(--box-shadow-one);
     &:first-child {
       border-top-right-radius: 8px;
       border-top-left-radius: 8px;
@@ -58,20 +59,17 @@ $Check-Background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
   //   transform: translateY(-50%);
   //   left: 1.5rem;
   border-radius: 50%;
-  border: 1px solid var(--border-color);
   display: flex;
-  background-color: #fc00ff;
-  background-image: linear-gradient(
-    90deg,
-    #fc00ff 0%,
-    #138de3 74%,
-    #00dbde 100%
-  );
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  background-color: var(--element-color);
+
   margin: auto 0.7rem auto 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   img {
+    opacity: 0;
     width: 70%;
   }
 }
@@ -90,17 +88,58 @@ $Check-Background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
   //   background-color: yellow;
   img {
     width: 100%;
+    cursor: pointer;
   }
 }
 
 .task-name {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   position: relative;
   top: 2.5px;
   word-wrap: break-word;
-  overflow: hidden;
+  // overflow: hidden;
+  cursor: pointer;
+  // &::after {
+  //   content: "";
+  //   position: absolute;
+  //   height: 2px;
+  //   background-color: black;
+  //   width: calc(100%);
+  //   // background-color: red;
+  // }
 }
+
+.check-task:checked ~ .circle {
+  border: 0;
+  background-color: #fc00ff;
+  background-image: linear-gradient(
+    90deg,
+    #fc00ff 0%,
+    #138de3 74%,
+    #00dbde 100%
+  );
+}
+.check-task:checked ~ .circle img {
+  // display: ;
+  opacity: 1;
+}
+.check-task:checked ~ .task-name::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  background-color: black;
+  width: calc(100%);
+  opacity: 0.5;
+  // background-color: red;
+}
+.check-task:checked ~ .task-name {
+  opacity: 0.5;
+  // background-color: red;
+}
+// [type="checkbox"]:checked + label .circle {
+//   background-color: red;
+// }
 
 .task-controls {
   margin-top: 3px;
@@ -169,4 +208,9 @@ $Check-Background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
     color-stop(0.5, transparent),
     to(transparent)
   );
+}
+
+.check-task {
+  opacity: 0;
+  position: absolute;
 }

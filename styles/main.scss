@@ -8,6 +8,7 @@ body {
   font-family: var(--font-family);
   font-size: var(--font-weight-400);
   font-size: 18px;
+  color: var(--font-color);
 }
 
 .hero-image-container {
@@ -62,7 +63,7 @@ header {
     .title {
       // padding: 3rem 0 1.5rem 0;
       //   font-size: 2rem;
-      color: var(--font-color);
+      color: white;
       //   color: red;
       letter-spacing: 4px;
       font-size: 2rem;
@@ -112,7 +113,47 @@ header {
   }
 
   .task-view {
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    box-shadow: var(--box-shadow-one);
     // background-color: yellowgreen;
   }
+}
+
+.pcbuttons {
+  display: none;
+  @media only screen and (min-width: 700px) {
+    display: flex;
+    justify-content: center;
+    background-color: var(--element-color);
+    gap: 15px;
+
+    p {
+      margin: 0;
+      transition: all 0.2s ease-in;
+      cursor: pointer;
+      &:hover {
+        color: hsl(220, 98%, 61%);
+      }
+    }
+    // display: block;
+  }
+}
+
+.mobile-buttons {
+  // display: block;
+  @media only screen and (min-width: 700px) {
+    display: none;
+  }
+}
+
+.clear {
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+  &:hover {
+    color: hsl(32, 84%, 52%);
+  }
+}
+
+#theme {
+  opacity: 0;
+  position: absolute;
 }

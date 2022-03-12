@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <!-- <script src=""></script> -->
+    <script defer src="./script.js"></script>
     <link rel="stylesheet" href="./css/main.css" />
     <title>todo app</title>
   </head>
@@ -28,7 +28,14 @@
         <div class="centering-container">
           <div class="title">TODO</div>
           <div class="day-and-night">
-            <img src="./images/icon-sun.svg" alt="sun or moon" />
+            <input type="checkbox" name="theme" id="theme" />
+            <label for="theme">
+              <img
+                src="./images/icon-sun.svg"
+                alt="sun or moon"
+                data-sun-moon
+              />
+            </label>
           </div>
         </div>
       </header>
@@ -45,90 +52,45 @@
         <div class="task-view">
           <ul class="tasks-container style-5">
             <li class="single-task">
-              <div class="circle">
-                <img src="./images/icon-check.svg" alt="check" />
-              </div>
-              <div class="task-name">this is task</div>
-              <div class="delete">
-                <img src="./images/icon-cross.svg" alt="delete" />
-              </div>
+              <label class="li-lable">
+                <input type="checkbox" class="check-task" />
+                <div class="circle">
+                  <img src="./images/icon-check.svg" alt="check" />
+                </div>
+                <div class="task-name">this is task</div>
+                <div class="delete">
+                  <img src="./images/icon-cross.svg" alt="delete" />
+                </div>
+              </label>
             </li>
             <li class="single-task">
-              <div class="circle">
-                <img src="./images/icon-check.svg" alt="check" />
-              </div>
-              <div class="task-name">this is task</div>
-              <div class="delete">
-                <img src="./images/icon-cross.svg" alt="delete" />
-              </div>
+              <label class="li-lable">
+                <input type="checkbox" class="check-task" />
+                <div class="circle">
+                  <img src="./images/icon-check.svg" alt="check" />
+                </div>
+                <div class="task-name">this is task</div>
+                <div class="delete">
+                  <img src="./images/icon-cross.svg" alt="delete" />
+                </div>
+              </label>
             </li>
             <li class="single-task">
-              <div class="circle">
-                <img src="./images/icon-check.svg" alt="check" />
-              </div>
-              <div class="task-name">this is task</div>
-              <div class="delete">
-                <img src="./images/icon-cross.svg" alt="delete" />
-              </div>
-            </li>
-            <li class="single-task">
-              <div class="circle">
-                <img src="./images/icon-check.svg" alt="check" />
-              </div>
-              <div class="task-name">this is task</div>
-              <div class="delete">
-                <img src="./images/icon-cross.svg" alt="delete" />
-              </div>
-            </li>
-            <li class="single-task">
-              <div class="circle">
-                <img src="./images/icon-check.svg" alt="check" />
-              </div>
-              <div class="task-name">this is task</div>
-              <div class="delete">
-                <img src="./images/icon-cross.svg" alt="delete" />
-              </div>
-            </li>
-            <li class="single-task">
-              <div class="circle">
-                <img src="./images/icon-check.svg" alt="check" />
-              </div>
-              <div class="task-name">this is task</div>
-              <div class="delete">
-                <img src="./images/icon-cross.svg" alt="delete" />
-              </div>
-            </li>
-            <li class="single-task">
-              <div class="circle">
-                <img src="./images/icon-check.svg" alt="check" />
-              </div>
-              <div class="task-name">this is task</div>
-              <div class="delete">
-                <img src="./images/icon-cross.svg" alt="delete" />
-              </div>
-            </li>
-            <li class="single-task">
-              <div class="circle">
-                <img src="./images/icon-check.svg" alt="check" />
-              </div>
-              <div class="task-name">this is task</div>
-              <div class="delete">
-                <img src="./images/icon-cross.svg" alt="delete" />
-              </div>
-            </li>
-            <li class="single-task">
-              <div class="circle">
-                <img src="./images/icon-check.svg" alt="check" />
-              </div>
-              <div class="task-name">this is taskthis is task</div>
-              <div class="delete">
-                <img src="./images/icon-cross.svg" alt="delete" />
-              </div>
+              <label class="li-lable">
+                <input type="checkbox" class="check-task" />
+                <div class="circle">
+                  <img src="./images/icon-check.svg" alt="check" />
+                </div>
+                <div class="task-name">this is task</div>
+                <div class="delete">
+                  <img src="./images/icon-cross.svg" alt="delete" />
+                </div>
+              </label>
             </li>
           </ul>
           <div class="task-controls">
             <p class="status">5 items left</p>
-            <div class="pcbuttons disable">
+            <div class="pcbuttons common-controls">
               <p class="all">All</p>
               <p class="active">Active</p>
               <p class="completed">Completed</p>
@@ -136,7 +98,7 @@
             <div class="clear">Clear Completed</div>
           </div>
         </div>
-        <div class="mobile-buttons">
+        <div class="mobile-buttons common-controls">
           <p class="all">All</p>
           <p class="active">Active</p>
           <p class="completed">Completed</p>
