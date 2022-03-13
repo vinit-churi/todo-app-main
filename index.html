@@ -110,16 +110,22 @@
       </footer> -->
     </main>
     <template id="task-template" class="single-task" data-isActive>
-      <label class="li-lable">
-        <input type="checkbox" class="check-task" />
-        <div class="circle">
-          <img src="./images/icon-check.svg" alt="check" />
-        </div>
-        <div class="task-name" data-task-name></div>
+      <li class="task-container-item">
+        <label class="li-lable">
+          <input type="checkbox" class="check-task" />
+          <div class="circle">
+            <img src="./images/icon-check.svg" alt="check" />
+          </div>
+          <div class="task-name" data-task-name></div>
+        </label>
         <div class="delete">
-          <img src="./images/icon-cross.svg" alt="delete" />
+          <img
+            class="delete-image"
+            src="./images/icon-cross.svg"
+            alt="delete"
+          />
         </div>
-      </label>
+      </li>
     </template>
   </body>
 </html>

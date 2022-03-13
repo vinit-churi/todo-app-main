@@ -31,7 +31,7 @@ $Check-Background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: 100%;
+    width: max-content;
     flex-shrink: 0;
     height: 50px !important;
     background-color: var(--element-color);
@@ -219,3 +219,18 @@ $Check-Background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
 //   opacity: 0;
 //   position: relative;
 // }
+
+li {
+  text-decoration: none;
+  list-style: none;
+  display: flex;
+  background-color: var(--background-color);
+}
+
+ul {
+  list-style: none;
+}
+
+.li-lable {
+  justify-content: space-between;
+}
