@@ -38,7 +38,6 @@ $Check-Background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
     cursor: grab;
     // background-color: violet;
     // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    box-shadow: var(--box-shadow-one);
     &:first-child {
       border-top-right-radius: 8px;
       border-top-left-radius: 8px;
@@ -224,8 +223,9 @@ li {
   text-decoration: none;
   list-style: none;
   display: flex;
-  background-color: var(--background-color);
+  background-color: var(--element-color);
   cursor: grab;
+  box-shadow: var(--box-shadow-one);
 }
 
 ul {

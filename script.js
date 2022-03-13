@@ -86,24 +86,6 @@ function changeTheme(isDark) {
   root.style.setProperty("--box-shadow-one", "none");
 }
 
-const mockLocalStorage = [
-  {
-    id: "id1",
-    name: "the first item",
-    isCompleted: false,
-  },
-  {
-    id: "id2",
-    name: "the second item",
-    isCompleted: false,
-  },
-  {
-    id: "id3",
-    name: "the third item",
-    isCompleted: false,
-  },
-];
-
 /*=====================
   initialize the data from local storage or an empty list
  ======================*/
