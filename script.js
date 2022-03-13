@@ -1,3 +1,5 @@
+/* root */
+const root = document.documentElement;
 /* task buttons */
 const inputForm = document.getElementById("task-input");
 const deleteButton = document.querySelector(".delete-image");
@@ -11,7 +13,50 @@ const isDarkSelected = document.getElementById("theme");
 const themeIcon = document.querySelector("[data-sun-moon]");
 const taskTemplate = document.getElementById("task-template");
 const tasksContainer = document.querySelector(".tasks-container");
-// console.log(AllButtons);
+/* tasks count display */
+const taskCountDisplay = document.querySelector(".status");
+/* clear completed */
+const clearCompletedTask = document.querySelector(".clear");
+
+const LOCAL_STORAGE_LIST_KEY = "tasks.list";
+
+/*=====================
+ All, active, completed buttons | filtering the list 
+ ======================*/
+
+[...AllButtons].forEach((button) => {
+  button.classList.add("button-active");
+  button.addEventListener("click", () => {
+    button.classList.add("button-active");
+    root.style.setProperty("--display-completed-false", "flex");
+    root.style.setProperty("--display-completed-true", "flex");
+    [...ActiveButtons, ...CompletedButtons].forEach((button) => {
+      button.classList.remove("button-active");
+    });
+  });
+});
+
+[...ActiveButtons].forEach((button) => {
+  button.addEventListener("click", () => {
+    button.classList.add("button-active");
+    root.style.setProperty("--display-completed-false", "flex");
+    root.style.setProperty("--display-completed-true", "none");
+    [...AllButtons, ...CompletedButtons].forEach((button) => {
+      button.classList.remove("button-active");
+    });
+  });
+});
+
+[...CompletedButtons].forEach((button) => {
+  button.addEventListener("click", () => {
+    button.classList.add("button-active");
+    root.style.setProperty("--display-completed-false", "none");
+    root.style.setProperty("--display-completed-true", "flex");
+    [...AllButtons, ...ActiveButtons].forEach((button) => {
+      button.classList.remove("button-active");
+    });
+  });
+});
 
 /*=====================
   Theme switcher
@@ -21,7 +66,6 @@ isDarkSelected.addEventListener("change", () => {
 });
 
 function changeTheme(isDark) {
-  let root = document.documentElement;
   if (!isDark) {
     /* light mode */
     themeIcon.setAttribute("src", "./images/icon-sun.svg");
@@ -65,13 +109,17 @@ const mockLocalStorage = [
  ======================*/
 
 //  let lists = JSON.parse(localStorage.getItem("tasks.list")) || [];
-let list = mockLocalStorage;
+let list = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 
 (() => {
   // console.log(list);
   list.forEach((listItem) => {
     // console.log(listItem);
-    saveAndRender(listItem);
+    console.log(listItem);
+    render(listItem);
+    // const li = document.getElementById(String(listItem.id));
+    // console.log(li);
+    // li.querySelector(".check-task").checked = listItem.isCompleted;
   });
 })();
 
@@ -88,7 +136,9 @@ function save(taskObj) {
   // save to local storage and update the global list array
   console.log("will save the obj to localStorage", taskObj);
   list.push(taskObj);
+  localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(list));
   console.log(list);
+  updateCount();
 }
 
 function render(taskObj) {
@@ -97,6 +147,8 @@ function render(taskObj) {
   const taskElement = document.importNode(taskTemplate.content, true);
   /* adding data attribute to the list item */
   const listItem = taskElement.querySelector(".task-container-item");
+  const checkBoxStatus = taskElement.querySelector(".check-task");
+  checkBoxStatus.checked = isCompleted;
   listItem.dataset.isCompleted = isCompleted;
   listItem.dataset.id = id;
   /* adding todo name to the  list item*/
@@ -134,6 +186,10 @@ tasksContainer.addEventListener("click", (event) => {
     parentLi.parentElement.removeChild(parentLi);
     console.log(itemId);
     const newList = list.filter((listItem) => listItem.id != itemId);
+    list = newList;
+    localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(list));
+
+    updateCount();
     console.log(newList);
     // console.log(list);
   }
@@ -142,65 +198,58 @@ tasksContainer.addEventListener("click", (event) => {
 /*=====================
     update the status
     ======================*/
-// console.log(Date.now().toString());
+tasksContainer.addEventListener("change", (event) => {
+  if (event.target.classList.contains("check-task")) {
+    const clickedThing = event.target;
+    const parentLi = clickedThing.parentElement.parentElement;
+    const itemId = parentLi.dataset.id;
+    console.log(itemId);
+    console.log(clickedThing.checked);
+    const updateList = list.map((listObj) => {
+      if (listObj.id === itemId) {
+        parentLi.dataset.isCompleted = clickedThing.checked;
+        return { ...listObj, isCompleted: clickedThing.checked };
+      }
+      return listObj;
+    });
+    list = updateList;
+    localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(list));
 
-// // localStorage.setItem("tasks", []);
-// localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists));
-// const createNewTask = (name) => {
-//   const prevData = localStorage.getItem("tasks");
-//   if (!(prevData === null)) {
-//     localStorage.setItem("tasks", JSON.stringify([...prevData, name]));
-//     appendRenderedList([...prevData, name]);
-//   }
-//   appendRenderedList([name]);
-//   console.log("is run");
-//   // const taskElement = document.importNode(taskTemplate.content, true);
-//   // const taskName = taskElement.querySelector("[data-task-name]");
-//   // const textNode = document.createTextNode(name);
-//   // taskName.append(textNode);
-//   // tasksContainer.append(taskElement);
-// };
+    updateCount();
+    console.log(updateList);
+  }
+});
 
-// const appendRenderedList = (arr) => {
-//   if (arr.length === 0) return;
-//   arr.forEach((name) => {
-//     const taskElement = document.importNode(taskTemplate.content, true);
-//     const taskName = taskElement.querySelector("[data-task-name]");
-//     const textNode = document.createTextNode(name);
-//     taskName.append(textNode);
-//     tasksContainer.append(taskElement);
-//     if (localStorage.getItem("tasks") === null) {
-//       localStorage.setItem("tasks", JSON.stringify([]));
-//     }
-//     const prevData = localStorage.getItem("tasks");
-//     localStorage.setItem("tasks", JSON.stringify([...prevData, name]));
-//   });
-// };
+/*=====================
+    update count and clear completed
+    ======================*/
+function updateCount() {
+  const totalItems = list.length;
+  const activeItems = list.reduce((previousValue, currentValue) => {
+    if (currentValue.isCompleted === false) return previousValue + 1;
+    return previousValue + 0;
+  }, 0);
+  const singleOrPlural = activeItems === 1 ? "task" : "tasks";
+  taskCountDisplay.innerText = `${activeItems} ${singleOrPlural} remaining`;
+  return { activeItems, totalItems };
+}
+updateCount();
+clearCompletedTask.addEventListener("click", () => {
+  const newList = list.filter((item) => {
+    if (item.isCompleted === true) {
+      const id = item.id;
+      console.log(id, typeof id);
+      const element = document.querySelector(
+        "[data-id=" + "'" + id + "'" + "]"
+      );
+      console.log(element, "this is element");
+      element.remove();
+    } else {
+      return item;
+    }
+  });
 
-// const removeAndDeleteTask = (e) => {
-//   // TODO and style display none to template
-//   // TODO remove the dom element
-// };
-
-// tasksContainer.addEventListener("change", (event) => {
-//   if (event.target.classList.contains("check-task")) {
-//     const clickedThing = event.target;
-//     const parentLi = clickedThing.parentElement.parentElement;
-//     // parentLi.style.display = "none";
-//     // console.dir(clickedThing);
-//     console.dir(clickedThing.parentElement.parentElement);
-//   }
-// });
-
-// function renderTasks(selectedList) {
-//   selectedList.tasks.forEach((task) => {
-//     const taskElement = document.importNode(taskTemplate.content, true);
-//     const checkbox = taskElement.querySelector("input");
-//     checkbox.id = task.id;
-//     checkbox.checked = task.complete;
-//     const label = taskElement.querySelector("label");
-//     label.htmlFor = task.id;
-//     label.append(task.name);
-//     tasksContainer.appendChild(taskElement);
-//   });
-// }
+  console.log(newList);
+  list = newList;
+  localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(list));
+});

@@ -225,6 +225,7 @@ li {
   list-style: none;
   display: flex;
   background-color: var(--background-color);
+  cursor: grab;
 }
 
 ul {
@@ -233,4 +234,15 @@ ul {
 
 .li-lable {
   justify-content: space-between;
+}
+
+.button-active {
+  color: hsl(220, 98%, 61%) !important;
+}
+
+[data-is-completed="false"] {
+  display: var(--display-completed-false) !important;
+}
+[data-is-completed="true"] {
+  display: var(--display-completed-true) !important;
 }
