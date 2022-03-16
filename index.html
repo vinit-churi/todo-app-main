@@ -51,44 +51,7 @@
           </form>
         </div>
         <div class="task-view">
-          <ul class="tasks-container style-5">
-            <!-- <template id="task-template" class="single-task" data-isActive>
-              <label class="li-lable">
-                <input type="checkbox" class="check-task" />
-                <div class="circle">
-                  <img src="./images/icon-check.svg" alt="check" />
-                </div>
-                <div class="task-name" data-task-name></div>
-                <div class="delete">
-                  <img src="./images/icon-cross.svg" alt="delete" />
-                </div>
-              </label>
-            </template> -->
-            <!-- <li class="single-task">
-              <label class="li-lable">
-                <input type="checkbox" class="check-task" />
-                <div class="circle">
-                  <img src="./images/icon-check.svg" alt="check" />
-                </div>
-                <div class="task-name">this is task</div>
-                <div class="delete">
-                  <img src="./images/icon-cross.svg" alt="delete" />
-                </div>
-              </label>
-            </li>
-            <li class="single-task">
-              <label class="li-lable">
-                <input type="checkbox" class="check-task" />
-                <div class="circle">
-                  <img src="./images/icon-check.svg" alt="check" />
-                </div>
-                <div class="task-name">this is task</div>
-                <div class="delete">
-                  <img src="./images/icon-cross.svg" alt="delete" />
-                </div>
-              </label>
-            </li> -->
-          </ul>
+          <ul class="tasks-container style-5"></ul>
           <div class="task-controls">
             <p class="status"></p>
             <div class="pcbuttons common-controls">
@@ -110,7 +73,7 @@
       </footer> -->
     </main>
     <template id="task-template" class="single-task">
-      <li class="task-container-item">
+      <li class="task-container-item" draggable="true">
         <label class="li-lable">
           <input type="checkbox" class="check-task" />
           <div class="circle">

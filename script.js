@@ -19,6 +19,7 @@ const taskCountDisplay = document.querySelector(".status");
 const clearCompletedTask = document.querySelector(".clear");
 
 const LOCAL_STORAGE_LIST_KEY = "tasks.list";
+const LOCAL_STORAGE_IS_DARK = "tasks.theme";
 
 /*=====================
  All, active, completed buttons | filtering the list 
@@ -65,9 +66,14 @@ isDarkSelected.addEventListener("change", () => {
   changeTheme(isDarkSelected.checked);
 });
 
+const isDark = JSON.parse(localStorage.getItem(LOCAL_STORAGE_IS_DARK)) || false;
+// console.log(isDark);
+changeTheme(isDark);
 function changeTheme(isDark) {
   if (!isDark) {
     /* light mode */
+    localStorage.setItem(LOCAL_STORAGE_IS_DARK, false);
+
     themeIcon.setAttribute("src", "./images/icon-sun.svg");
     root.style.setProperty("--background-color", "hsl(0, 0%, 98%)");
     root.style.setProperty("--element-color", "white");
@@ -79,6 +85,7 @@ function changeTheme(isDark) {
     return;
   }
   /* dark mode */
+  localStorage.setItem(LOCAL_STORAGE_IS_DARK, true);
   themeIcon.setAttribute("src", "./images/icon-moon.svg");
   root.style.setProperty("--background-color", "hsl(235, 21%, 11%)");
   root.style.setProperty("--element-color", "hsl(235, 24%, 19%)");
