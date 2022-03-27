@@ -10,6 +10,16 @@
       href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <!-- <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.11/lib/sortable.js"
+    ></script> -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"
+      integrity="sha512-Eezs+g9Lq4TCCq0wae01s9PuNWzHYoCMkE97e2qdkYthpI0pzC3UGB03lgEHn2XM85hDOUF6qgqqszs+iXU4UA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script defer src="./script.js"></script>
     <link rel="stylesheet" href="./css/main.css" />
     <title>todo app</title>
@@ -72,8 +82,9 @@
       <!-- <footer>
       </footer> -->
     </main>
+    <!-- draggable="true" -->
     <template id="task-template" class="single-task">
-      <li class="task-container-item" draggable="true">
+      <li class="task-container-item">
         <label class="li-lable">
           <input type="checkbox" class="check-task" />
           <div class="circle">

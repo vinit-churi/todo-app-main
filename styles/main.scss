@@ -162,3 +162,23 @@ header {
   cursor: pointer !important;
   // z-index: 1000;
 }
+
+// modifying the svg color directly doesn't work here
+// .delete-image {
+//   fill: white !important;
+//   color: white;
+//   color: #6a6d90;
+// }
+
+.blue-background-class {
+  // background-color: red;
+  border-bottom: 4px var(--move-border-color) solid;
+  // scale: ;
+}
+
+.sortable-chosen {
+  // transition: all 0.3s ease-in;
+  transition: all 0.1s ease-out;
+  transform: scale(1);
+  // background-color: red;
+}

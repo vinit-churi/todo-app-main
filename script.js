@@ -22,6 +22,89 @@ const LOCAL_STORAGE_LIST_KEY = "tasks.list";
 const LOCAL_STORAGE_IS_DARK = "tasks.theme";
 
 /*=====================
+  initialize the data from local storage or an empty list
+ ======================*/
+
+//  let lists = JSON.parse(localStorage.getItem("tasks.list")) || [];
+let list = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
+
+(() => {
+  // console.log(list);
+  list.forEach((listItem) => {
+    // console.log(listItem);
+    console.log(listItem);
+    render(listItem);
+    // const li = document.getElementById(String(listItem.id));
+    // console.log(li);
+    // li.querySelector(".check-task").checked = listItem.isCompleted;
+  });
+})();
+
+/*=====================
+ sortable functionality 
+ ======================*/
+// const sortable = new Sortable.default(tasksContainer, {
+//   draggable: "li",
+//   animation: 150,
+//   ghostClass: "blue-background-class",
+// });
+// Sortable.mount(new AutoScroll());
+var sortable = new Sortable(tasksContainer, {
+  animation: 150,
+  ghostClass: "blue-background-class",
+  chosenClass: "sortable-chosen",
+  delay: 1000 * 0.8, // time in milliseconds to define when the sorting should start
+  delayOnTouchOnly: true, // only delay if user is using touch
+  onEnd: function (/**Event*/ evt) {
+    var itemEl = evt.item; // dragged HTMLElement
+    console.log(itemEl);
+    // console.log(itemEl.parent);
+    // console.log(tasksContainer);
+    const sortedItems = Array.from(tasksContainer.getElementsByTagName("li"));
+    const newOrder = sortedItems.map((item) => {
+      console.log(item.dataset);
+      console.log(item.dataset.isCompleted);
+      return {
+        id: item.dataset.id,
+        name: item.querySelector(".task-name").textContent,
+        isCompleted: !!item.dataset.isCompleted === "truth",
+      };
+    });
+    console.log(newOrder);
+    // const newList = newOrder.map(({ id, name, isCompleted }, index) => {
+    //   return {
+    //     id,
+    //     name,
+    //     isCompleted,
+    //   };
+    // });
+    // console.log(newList);
+    console.log(list);
+    list = newOrder;
+    localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(list));
+
+    // evt.to; // target list
+    // evt.from; // previous list
+    // evt.oldIndex; // element's old index within old parent
+    // evt.newIndex; // element's new index within new parent
+    // evt.oldDraggableIndex; // element's old index within old parent, only counting draggable elements
+    // evt.newDraggableIndex; // element's new index within new parent, only counting draggable elements
+    // evt.clone; // the clone element
+    // evt.pullMode; // when item is in another sortable: `"clone"` if cloning, `true` if moving
+  },
+});
+
+// sortable.on("sortable:start", (e) => {
+//   console.log("sortable:start");
+//   console.log(e.target);
+// });
+// sortable.on("sortable:sort", () => console.log("sortable:sort"));
+// sortable.on("sortable:sorted", () => console.log("sortable:sorted"));
+// sortable.on("sortable:stop", () => console.log("sortable:stop"));
+
+// not working correctly
+
+/*=====================
  All, active, completed buttons | filtering the list 
  ======================*/
 
@@ -82,6 +165,7 @@ function changeTheme(isDark) {
       "--box-shadow-one",
       "rgba(0, 0, 0, 0.16) 0px 1px 4px"
     );
+    root.style.setProperty("--move-border-color", "#fff");
     return;
   }
   /* dark mode */
@@ -91,26 +175,8 @@ function changeTheme(isDark) {
   root.style.setProperty("--element-color", "hsl(235, 24%, 19%)");
   root.style.setProperty("--font-color", "hsl(0, 0%, 98%)");
   root.style.setProperty("--box-shadow-one", "none");
+  root.style.setProperty("--move-border-color", "#000");
 }
-
-/*=====================
-  initialize the data from local storage or an empty list
- ======================*/
-
-//  let lists = JSON.parse(localStorage.getItem("tasks.list")) || [];
-let list = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
-
-(() => {
-  // console.log(list);
-  list.forEach((listItem) => {
-    // console.log(listItem);
-    console.log(listItem);
-    render(listItem);
-    // const li = document.getElementById(String(listItem.id));
-    // console.log(li);
-    // li.querySelector(".check-task").checked = listItem.isCompleted;
-  });
-})();
 
 /*=====================
   save and render tasks
@@ -137,8 +203,9 @@ function render(taskObj) {
   /* adding data attribute to the list item */
   const listItem = taskElement.querySelector(".task-container-item");
   const checkBoxStatus = taskElement.querySelector(".check-task");
+  console.log(typeof isCompleted, "is the type of completed");
   checkBoxStatus.checked = isCompleted;
-  listItem.dataset.isCompleted = isCompleted;
+  listItem.dataset.isCompleted = isCompleted === "truth";
   listItem.dataset.id = id;
   /* adding todo name to the  list item*/
   const taskName = taskElement.querySelector("[data-task-name]");
@@ -170,6 +237,7 @@ inputForm.addEventListener("submit", (event) => {
 tasksContainer.addEventListener("click", (event) => {
   if (event.target.classList.contains("delete-image")) {
     const clickedThing = event.target;
+    console.log(clickedThing);
     const parentLi = clickedThing.parentElement.parentElement;
     const itemId = parentLi.dataset.id;
     parentLi.parentElement.removeChild(parentLi);
