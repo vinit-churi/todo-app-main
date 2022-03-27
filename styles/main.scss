@@ -155,12 +155,21 @@ header {
 #theme {
   opacity: 0;
   position: absolute;
+  z-index: -100;
 }
 
 #theme-label {
   // background-color: red;
   cursor: pointer !important;
-  // z-index: 1000;
+  height: 26px;
+  width: max-content;
+  z-index: 300;
+  // background-color: red;
+}
+
+.day-and-night {
+  z-index: 200;
+  // background-color: rebeccapurple;
 }
 
 // modifying the svg color directly doesn't work here
@@ -181,8 +190,8 @@ header {
   // background-color: red;
   transition: all 0.1s ease-out;
   transform: scale(1);
-  border-bottom: 4px var(--move-border-color) solid;
-  border-top: 4px var(--move-border-color) solid;
+  border-bottom: 3px var(--move-border-color) solid;
+  border-top: 3px var(--move-border-color) solid;
 }
 
 .sortable-drag {
