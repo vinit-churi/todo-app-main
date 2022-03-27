@@ -170,15 +170,24 @@ header {
 //   color: #6a6d90;
 // }
 
-.blue-background-class {
+.ghost {
   // background-color: red;
-  border-bottom: 4px var(--move-border-color) solid;
+  // border-bottom: 4px var(--move-border-color) solid;
   // scale: ;
 }
 
 .sortable-chosen {
   // transition: all 0.3s ease-in;
+  // background-color: red;
   transition: all 0.1s ease-out;
   transform: scale(1);
+  border-bottom: 4px var(--move-border-color) solid;
+  border-top: 4px var(--move-border-color) solid;
+}
+
+.sortable-drag {
   // background-color: red;
+  // opacity: 0;
+  // background-color: #00dbde;
+  // display: none;
 }

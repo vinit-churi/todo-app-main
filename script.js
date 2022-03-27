@@ -51,8 +51,10 @@ let list = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 // Sortable.mount(new AutoScroll());
 var sortable = new Sortable(tasksContainer, {
   animation: 150,
-  ghostClass: "blue-background-class",
+  ghostClass: "ghost",
   chosenClass: "sortable-chosen",
+  // handle: ".my-handle",
+  dragClass: "sortable-drag",
   delay: 1000 * 0.8, // time in milliseconds to define when the sorting should start
   delayOnTouchOnly: true, // only delay if user is using touch
   onEnd: function (/**Event*/ evt) {
@@ -61,16 +63,22 @@ var sortable = new Sortable(tasksContainer, {
     // console.log(itemEl.parent);
     // console.log(tasksContainer);
     const sortedItems = Array.from(tasksContainer.getElementsByTagName("li"));
+    console.log(sortedItems[0].dataset);
     const newOrder = sortedItems.map((item) => {
-      console.log(item.dataset);
-      console.log(item.dataset.isCompleted);
+      console.log(item.dataset, "is this thing printing");
+      console.log(
+        item.dataset.isCompleted === true,
+        "here is the real output",
+        item.dataset.isCompleted === "true"
+      );
       return {
         id: item.dataset.id,
         name: item.querySelector(".task-name").textContent,
-        isCompleted: !!item.dataset.isCompleted === "truth",
+        isCompleted: item.dataset.isCompleted === "true",
       };
     });
-    console.log(newOrder);
+    // console.log("new order is");
+    // console.log(newOrder);
     // const newList = newOrder.map(({ id, name, isCompleted }, index) => {
     //   return {
     //     id,
@@ -79,8 +87,8 @@ var sortable = new Sortable(tasksContainer, {
     //   };
     // });
     // console.log(newList);
-    console.log(list);
     list = newOrder;
+    // console.log(list);
     localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(list));
 
     // evt.to; // target list
@@ -204,8 +212,9 @@ function render(taskObj) {
   const listItem = taskElement.querySelector(".task-container-item");
   const checkBoxStatus = taskElement.querySelector(".check-task");
   console.log(typeof isCompleted, "is the type of completed");
+  console.log(isCompleted === "true", isCompleted);
+  listItem.dataset.isCompleted = isCompleted;
   checkBoxStatus.checked = isCompleted;
-  listItem.dataset.isCompleted = isCompleted === "truth";
   listItem.dataset.id = id;
   /* adding todo name to the  list item*/
   const taskName = taskElement.querySelector("[data-task-name]");
@@ -260,6 +269,7 @@ tasksContainer.addEventListener("change", (event) => {
     const clickedThing = event.target;
     const parentLi = clickedThing.parentElement.parentElement;
     const itemId = parentLi.dataset.id;
+    parentLi.dataset.isCompleted = clickedThing.checked;
     console.log(itemId);
     console.log(clickedThing.checked);
     const updateList = list.map((listObj) => {
