@@ -86,5 +86,5 @@ Users should be able to:
 
 ## Author
 
-- Website - [vinit](https://vinit-churi.github.io/todo-app-main/)
-- Frontend Mentor - [@RedSquirrrel](https://www.frontendmentor.io/profile/vinit-churi)
+- Website - [vinit-churi](https://vinit-churi.github.io/todo-app-main/)
+- Frontend Mentor - [@vinit-churi](https://www.frontendmentor.io/profile/vinit-churi)
