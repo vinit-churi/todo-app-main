@@ -39,7 +39,7 @@ Users should be able to:
 ![Desktop](./screenshots/desktop-view.png) -->
 
 <div style="display:flex;gap:30px">
-<img src="./screenshots/desktop-view.png" width="70%" height="100%">
+<img src="./screenshots/desktop-view.png" width="75%" height="100%">
 
 <img src="./screenshots/mobile-view.png" width="20%">
 
